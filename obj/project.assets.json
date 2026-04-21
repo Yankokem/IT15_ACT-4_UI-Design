@@ -6392,23 +6392,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nyanc\\.nuget\\packages\\": {},
+    "C:\\Users\\2ijqsprntd\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nyanc\\source\\repos\\Labiaga_Activity_4\\Labiaga_Activity_4\\Labiaga_Activity_4.csproj",
+      "projectUniqueName": "C:\\Users\\2ijqsprntd\\source\\repos\\IT15_ACT-4_UI-Design\\Labiaga_Activity_4.csproj",
       "projectName": "Labiaga_Activity_4",
-      "projectPath": "C:\\Users\\nyanc\\source\\repos\\Labiaga_Activity_4\\Labiaga_Activity_4\\Labiaga_Activity_4.csproj",
-      "packagesPath": "C:\\Users\\nyanc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nyanc\\source\\repos\\Labiaga_Activity_4\\Labiaga_Activity_4\\obj\\",
+      "projectPath": "C:\\Users\\2ijqsprntd\\source\\repos\\IT15_ACT-4_UI-Design\\Labiaga_Activity_4.csproj",
+      "packagesPath": "C:\\Users\\2ijqsprntd\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\2ijqsprntd\\source\\repos\\IT15_ACT-4_UI-Design\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nyanc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\2ijqsprntd\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
