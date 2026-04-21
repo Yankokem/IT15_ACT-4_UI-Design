@@ -1,0 +1,80 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_IdentityLayout.cshtml";
+}
+
+<h1 class="mb-4 text-center">
+    <i class="bi bi-person-plus"></i> @ViewData["Title"]
+</h1>
+
+<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <h2 class="h5 mb-3 text-center">
+        <i class="bi bi-pencil-square"></i> Create a new account
+    </h2>
+
+    @if (ViewData.ModelState[""] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong>
+            <div asp-validation-summary="ModelOnly"></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="form-floating mb-3">
+        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" data-bs-toggle="tooltip" title="Use a valid email address" />
+        <label asp-for="Input.Email" class="form-label">
+            <i class="bi bi-envelope"></i> Email
+        </label>
+        <span asp-validation-for="Input.Email" class="text-danger small d-block mt-1"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" data-bs-toggle="tooltip" title="Password must be at least 6 characters" />
+        <label asp-for="Input.Password" class="form-label">
+            <i class="bi bi-lock"></i> Password
+        </label>
+        <span asp-validation-for="Input.Password" class="text-danger small d-block mt-1"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" data-bs-toggle="tooltip" title="Confirm your password" />
+        <label asp-for="Input.ConfirmPassword" class="form-label">
+            <i class="bi bi-lock-check"></i> Confirm Password
+        </label>
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger small d-block mt-1"></span>
+    </div>
+
+    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">
+        <i class="bi bi-check-circle"></i> Register
+    </button>
+
+    <hr />
+
+    <div class="text-center small">
+        <p>Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="fw-bold">Log in here</a></p>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+
+            var registerForm = document.getElementById('registerForm');
+            var registerButton = document.getElementById('registerSubmit');
+            if (registerForm && registerButton) {
+                registerForm.addEventListener('submit', function () {
+                    registerButton.disabled = true;
+                    registerButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Creating account...';
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,35 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Manage Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+    Layout = "~/Views/Shared/_IdentityLayout.cshtml";
+}
+
+<h3 class="mb-4">
+    <i class="bi bi-person-circle"></i> @ViewData["Title"]
+</h3>
+
+<div class="row g-4">
+    <div class="col-lg-4">
+        <partial name="_ManageNav" />
+    </div>
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title mb-3">Account Overview</h4>
+                <p class="mb-2"><strong>Username:</strong> @Model.Username</p>
+                <p class="mb-4"><strong>Email:</strong> @Model.Email</p>
+
+                <div class="d-grid gap-2 d-md-flex">
+                    <a asp-page="./Email" class="btn btn-primary">
+                        <i class="bi bi-envelope"></i> Update Email
+                    </a>
+                    <a asp-page="./ChangePassword" class="btn btn-outline-primary">
+                        <i class="bi bi-key"></i> Change Password
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

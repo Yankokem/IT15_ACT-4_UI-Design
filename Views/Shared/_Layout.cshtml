@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Labiaga_Activity_4</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Labiaga_Activity_4.styles.css" asp-append-version="true" />
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            flex-shrink: 0;
+        }
+
+        main {
+            flex: 1;
+            padding-bottom: 2rem;
+        }
+
+        footer {
+            flex-shrink: 0;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #0066ff 0%, #0052cc 100%) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: linear-gradient(90deg, #0066ff 0%, #0052cc 100%);
+            color: #ffffff !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0 !important;
+            font-size: 0.95rem;
+        }
+
+        .footer a {
+            color: #c8c8e8;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door"></i> Labiaga_Activity_4
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                <i class="bi bi-shield-lock"></i> Privacy
+                            </a>
+                        </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger" href="/Admin/Dashboard">
+                                        <i class="bi bi-person-badge"></i> Admin Panel
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+
+                    <div class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <span class="navbar-text me-3">
+                                <i class="bi bi-person-circle"></i> @User.Identity.Name
+                            </span>
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
+                                <i class="bi bi-gear"></i> Manage
+                            </a>
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">
+                                <i class="bi bi-person-plus"></i> Register
+                            </a>
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
+                                <i class="bi bi-box-arrow-in-right"></i> Login
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="pb-3">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 - Labiaga_Activity_4 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> | Secure Authentication System</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    Layout = "~/Views/Shared/_IdentityLayout.cshtml";
+}
+
+<h3 class="mb-4">
+    <i class="bi bi-person-vcard"></i> @ViewData["Title"]
+</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle"></i> <strong>Data Management</strong>
+            <p class="mb-0 mt-2">Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-download"></i> Download Your Data
+                </h5>
+                <p class="card-text">Get a copy of all your personal data in a downloadable format.</p>
+                <form id="download-data" asp-page="DownloadPersonalData" method="post" class="d-inline">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card border-danger">
+            <div class="card-body">
+                <h5 class="card-title text-danger">
+                    <i class="bi bi-exclamation-triangle-fill"></i> Delete Your Account
+                </h5>
+                <p class="card-text">
+                    <strong class="text-danger">Warning:</strong> Deleting your account will permanently remove all your personal data and account information. This action cannot be recovered.
+                </p>
+                <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Delete Account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

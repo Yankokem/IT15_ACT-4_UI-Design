@@ -1,0 +1,90 @@
+﻿@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Manage Email";
+    ViewData["ActivePage"] = ManageNavPages.Email;
+    Layout = "~/Views/Shared/_IdentityLayout.cshtml";
+}
+
+<h3 class="mb-4">
+    <i class="bi bi-envelope-at"></i> @ViewData["Title"]
+</h3>
+
+@{
+    var statusMessage = (string)ViewData["StatusMessage"];
+}
+
+@if (!string.IsNullOrEmpty(statusMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle"></i> @statusMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form id="email-form" method="post">
+            @if (ViewData.ModelState[""] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong>
+                    <div asp-validation-summary="All"></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (Model.IsEmailConfirmed)
+            {
+                <div class="form-floating mb-3">
+                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+                    <label asp-for="Email" class="form-label">
+                        <i class="bi bi-shield-check"></i> Current Email (Verified)
+                    </label>
+                    <small class="text-success">
+                        <i class="bi bi-check-circle-fill"></i> Email confirmed
+                    </small>
+                </div>
+            }
+            else
+            {
+                <div class="form-floating mb-3">
+                    <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+                    <label asp-for="Email" class="form-label">
+                        <i class="bi bi-exclamation-triangle"></i> Current Email (Unverified)
+                    </label>
+                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-sm btn-warning mt-2">
+                        <i class="bi bi-arrow-repeat"></i> Send verification email
+                    </button>
+                </div>
+            }
+
+            <hr />
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." data-bs-toggle="tooltip" title="Enter your new email address" />
+                <label asp-for="Input.NewEmail" class="form-label">
+                    <i class="bi bi-envelope"></i> New Email
+                </label>
+                <span asp-validation-for="Input.NewEmail" class="text-danger small d-block mt-1"></span>
+            </div>
+
+            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-primary btn-lg w-100">
+                <i class="bi bi-pencil-square"></i> Change email
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Bootstrap tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+    </script>
+}
